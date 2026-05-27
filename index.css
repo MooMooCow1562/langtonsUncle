@@ -1,0 +1,46 @@
+.container{
+    float: inline-start;
+}
+.extras{
+    float: right;
+}
+#L_ANT_LEFT_UP{
+    background: #BB6600;
+    color: #00ffff;
+}
+#L_ANT_LEFT_RIGHT{
+    background: #00bb11;
+    color: #00ffff;
+}
+#L_ANT_LEFT_DOWN{
+    background: #0088bb;
+    color: #ff00ff
+}
+#L_ANT_LEFT_LEFT{
+    background: #4400bb;
+    color: #ff0000;
+}
+#L_ANT_RIGHT_UP{
+    background: #BB0000;
+    color: #ffff00;
+}
+#L_ANT_RIGHT_RIGHT{
+    background: #BBBB00;
+    color: #00ffff;
+}
+#L_ANT_RIGHT_DOWN{
+    background: #00bb88;
+    color: #00ffff;
+}
+#L_ANT_RIGHT_LEFT{
+    background: #0022bb;
+    color: #ffff00;
+}
+#L_RIGHT{
+    background: #CCCCCC;
+    color:#333333;
+}
+#L_LEFT{
+    background: #333333;
+    color: #CCCCCC;
+}

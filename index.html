@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div class="container">
+    <h4>Langton's Ant</h4>
+    <canvas id="ant" width="500" height="500"></canvas>
+    <input id="aStep" type="button" value="Step">
+    <input id="aStart" type="button" value="Start">
+    <input id="aStop" type="button" value="Stop">
+    <input id="aReset" type="button" value="Reset">
+</div>
+<div hidden class="container">
+    <h4>Langton's Uncle</h4>
+    <canvas id="uncle" width="500" height="500"></canvas>
+    <input id="uStep" type="button" value="Step">
+    <input id="uStart" type="button" value="Start">
+    <input id="uStop" type="button" value="Stop">
+    <input id="UReset" type="button" value="Reset">
+</div>
+You can click on the canvas to draw!
+Click on the "Current draw type" to change what cell type you're drawing.
+
+<div class="extras">
+    <label for="speed">Speed:</label>
+    <input id="speed" type="number" value="10" min="1" max="208">
+    <details>
+        <summary>
+            Current Draw Type
+        </summary>
+        <label id="L_RIGHT" for="RIGHT">turn right cell</label>
+        <input type="radio" id="RIGHT" name="cellType">
+        <br>
+        <label for="LEFT" id="L_LEFT">turn left cell</label>
+        <input type="radio" id="LEFT" name="cellType" checked>
+        <br>
+        <label for="ANT_RIGHT_UP" id="L_ANT_RIGHT_UP">ant turning right, facing up</label>
+        <input type="radio" id="ANT_RIGHT_UP" name="cellType">
+        <br>
+        <label for="ANT_RIGHT_RIGHT" id="L_ANT_RIGHT_RIGHT">ant turning right, facing right</label>
+        <input type="radio" id="ANT_RIGHT_RIGHT" name="cellType">
+        <br>
+        <label for="ANT_RIGHT_DOWN" id="L_ANT_RIGHT_DOWN">ant turning right, facing down</label>
+        <input type="radio" id="ANT_RIGHT_DOWN" name="cellType" >
+        <br>
+        <label for="ANT_RIGHT_LEFT" id="L_ANT_RIGHT_LEFT">ant turning right, facing left</label>
+        <input type="radio" id="ANT_RIGHT_LEFT" name="cellType">
+        <br>
+        <label for="ANT_LEFT_UP" id="L_ANT_LEFT_UP">ant turning left, facing up</label>
+        <input type="radio" id="ANT_LEFT_UP" name="cellType">
+        <br>
+        <label for="ANT_LEFT_RIGHT" id="L_ANT_LEFT_RIGHT">ant turning left, facing right</label>
+        <input type="radio" id="ANT_LEFT_RIGHT" name="cellType">
+        <br>
+        <label for="ANT_LEFT_DOWN" id="L_ANT_LEFT_DOWN">ant turning left, facing down</label>
+        <input type="radio" id="ANT_LEFT_DOWN" name="cellType">
+        <br>
+        <label for="ANT_LEFT_LEFT" id="L_ANT_LEFT_LEFT">ant turning left, facing left</label>
+        <input type="radio" id="ANT_LEFT_LEFT" name="cellType">
+    </details>
+</div>
+<script src="antScript.js"></script>
+</body>
+</html>
