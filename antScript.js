@@ -1,3 +1,4 @@
+//object that handles all necessary cell types.
 const ANT_INFO = {
     RIGHT: "#CCCCCC",
     LEFT: "#333333",
@@ -8,9 +9,12 @@ const ANT_INFO = {
     ANT_LEFT_UP: "#BB6600",
     ANT_LEFT_RIGHT: "#00BB11",
     ANT_LEFT_DOWN: "#0088bb",
-    ANT_LEFT_LEFT: "#4400bb",
+    ANT_LEFT_LEFT: "#4400bb"
 }
 Object.freeze(ANT_INFO)
+
+//necessary variables,
+//TODO: document.
 const ANT_CANVAS = document.getElementById("ant")
 const ANT_CONTEXT = ANT_CANVAS.getContext("2d")
 const CELL_SIZE = 3
@@ -23,6 +27,7 @@ let antTimeout
 let antGrid = create2dArray(ANT_GRID_LENGTH, ANT_GRID_HEIGHT)
 let nextAntGrid = create2dArray(ANT_GRID_LENGTH, ANT_GRID_HEIGHT)
 
+//2d arrays in javascript are mean, this makes a proper 2d array.
 function create2dArray(length, height) {
     let arr = new Array(height)
     for (let h = 0; h < height; h++) {
@@ -37,10 +42,12 @@ function create2dArray(length, height) {
     return arr;
 }
 
+//wraps a value in a dimension, is functional for between -1*dimension and 2*dimension
 function wrap(value, dimension) {
     return (Number(value + dimension) % dimension);
 }
 
+//draws a cell.
 function drawAntCell(y, x) {
     let normX = Math.floor(x);
     let normY = Math.floor(y);
@@ -50,6 +57,7 @@ function drawAntCell(y, x) {
     ANT_CONTEXT.fillRect(normX, normY, CELL_SIZE, CELL_SIZE);
 }
 
+//one step forward in time.
 function antStep() {
     for (let h = 0; h < ANT_GRID_HEIGHT; h++) {
         for (let l = 0; l < ANT_GRID_LENGTH; l++) {
@@ -119,6 +127,7 @@ function antStep() {
     cloneInto(antGrid, nextAntGrid)
 }
 
+//clones one board into the other.
 function cloneInto(into, cloneMe) {
     //for every entry in into, clone the value in the corresponding array in cloneMe.
     for (let y = 0; y < ANT_GRID_HEIGHT; y++) {
@@ -128,6 +137,7 @@ function cloneInto(into, cloneMe) {
     }
 }
 
+//draws antcells to the board as a simple callable function.
 function drawAntBoard() {
     for (let h = 0; h < ANT_GRID_HEIGHT; h++) {
         for (let l = 0; l < ANT_GRID_LENGTH; l++) {
@@ -136,6 +146,7 @@ function drawAntBoard() {
     }
 }
 
+//creates a draw loop when called.
 function antTimeoutHandler() {
     for (let i = 0; i < speed.value; i++) {
         antStep()
@@ -144,6 +155,7 @@ function antTimeoutHandler() {
     antTimeout = setTimeout(() => antTimeoutHandler(), 0)
 }
 
+//starts the draw loop, accounts for existing draw loop and clears it first.
 function antStart() {
     if (antTimeout) {
         clearTimeout(antTimeout)
@@ -151,11 +163,13 @@ function antStart() {
     antTimeoutHandler()
 }
 
+//stops the draw loop.
 function antStop() {
     clearTimeout(antTimeout)
     drawAntBoard()
 }
 
+//resets the board.
 function antReset() {
     if (antTimeout) {
         clearTimeout(antTimeout)
@@ -165,6 +179,7 @@ function antReset() {
     drawAntBoard()
 }
 
+//attatch control scripts to controls.
 document.getElementById("aStep").addEventListener("click", () => {
     antStep();
     drawAntBoard()
@@ -173,9 +188,9 @@ document.getElementById("aStart").addEventListener("click", antStart)
 document.getElementById("aStop").addEventListener("click", antStop)
 document.getElementById("aReset").addEventListener("click", antReset)
 drawAntBoard()
-//allows you to actually toggle cells.
-let currentDrawType = ANT_INFO.LEFT;
 
+//the following let, function, and for allows you to actually toggle cells.
+let currentDrawType = ANT_INFO.LEFT;
 function cellToggle(e) {
     let bound = ANT_CANVAS.getBoundingClientRect();
     let y1 = Math.floor((e.clientY - bound.top) / CELL_SIZE);
@@ -184,7 +199,6 @@ function cellToggle(e) {
     antGrid[wrap(y1, ANT_GRID_HEIGHT)][wrap(x1, ANT_GRID_LENGTH)] = currentDrawType;
     drawAntBoard();
 }
-
 ANT_CANVAS.addEventListener("click", cellToggle)
 for (const cellType of document.getElementsByName("cellType")) {
     cellType.addEventListener("change", (e) => {
@@ -227,4 +241,5 @@ for (const cellType of document.getElementsByName("cellType")) {
     })
 }
 
+//TO-DO
 //highlights the board and what cell you're editing on the board.
